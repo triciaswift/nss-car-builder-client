@@ -6,7 +6,7 @@ document.addEventListener("change", (clickEvent) => {
   }
 });
 
-const techs = getTechnologies();
+const techs = await getTechnologies();
 
 export const Technologies = () => {
   return `<h2>Technologies</h2>

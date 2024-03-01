@@ -8,7 +8,7 @@ import {
 
 const paints = getPaints();
 const interiors = getInteriors();
-const techs = getTechnologies();
+const techs = await getTechnologies();
 const wheels = getWheels();
 
 export const Orders = () => {

@@ -81,8 +81,10 @@ export const getInteriors = () => {
   return [...database.interiors];
 };
 
-export const getTechnologies = () => {
-  return [...database.technologies];
+export const getTechnologies = async () => {
+  const res = await fetch("http://localhost:5087/technologies");
+  const data = await res.json();
+  return data;
 };
 
 export const getPaints = () => {
