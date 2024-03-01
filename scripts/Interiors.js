@@ -6,7 +6,7 @@ document.addEventListener("change", (clickEvent) => {
   }
 });
 
-const interiors = getInteriors();
+const interiors = await getInteriors();
 
 export const Interiors = () => {
   return `<h2>Interior</h2>

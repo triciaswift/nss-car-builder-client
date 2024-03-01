@@ -6,13 +6,13 @@ import {
   getOrders,
 } from "./database.js";
 
-const paints = getPaints();
-const interiors = getInteriors();
+const paints = await getPaints();
+const interiors = await getInteriors();
 const techs = await getTechnologies();
-const wheels = getWheels();
+const wheels = await getWheels();
 
-export const Orders = () => {
-  const orders = getOrders();
+export const Orders = async () => {
+  const orders = await getOrders();
 
   return `${orders
     .map((order) => {

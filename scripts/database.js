@@ -69,16 +69,22 @@ export const addCustomOrder = () => {
   document.dispatchEvent(new CustomEvent("stateChanged"));
 };
 
-export const getOrders = () => {
-  return [...database.customOrders];
+export const getOrders = async () => {
+  const res = await fetch("http://localhost:5087/orders");
+  const data = await res.json();
+  return data;
 };
 
-export const getWheels = () => {
-  return [...database.wheels];
+export const getWheels = async () => {
+  const res = await fetch("http://localhost:5087/wheels");
+  const data = await res.json();
+  return data;
 };
 
-export const getInteriors = () => {
-  return [...database.interiors];
+export const getInteriors = async () => {
+  const res = await fetch("http://localhost:5087/interiors");
+  const data = await res.json();
+  return data;
 };
 
 export const getTechnologies = async () => {
@@ -87,6 +93,8 @@ export const getTechnologies = async () => {
   return data;
 };
 
-export const getPaints = () => {
-  return [...database.paints];
+export const getPaints = async () => {
+  const res = await fetch("http://localhost:5087/paintcolors");
+  const data = await res.json();
+  return data;
 };
