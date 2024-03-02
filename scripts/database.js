@@ -59,6 +59,8 @@ export const setTechnology = (id) => {
   // document.dispatchEvent(new CustomEvent("stateChanged"))
 };
 
+// NEW custom order POST
+
 export const addCustomOrder = async () => {
   const newOrder = { ...database.orderBuilder };
   await fetch("http://localhost:5087/orders", {
@@ -68,15 +70,20 @@ export const addCustomOrder = async () => {
     },
     body: JSON.stringify(newOrder),
   });
-
-  //! API now handles the commented out code below
-  // newOrder.timestamp = new Date().toLocaleDateString("en-US");
-  // newOrder.id = database.customOrders[database.customOrders.length - 1].id + 1;
-  // database.customOrders.push(newOrder);
-
   database.orderBuilder = {};
   document.dispatchEvent(new CustomEvent("stateChanged"));
 };
+
+// NEW completeOrder - called when "complete" button on order in orders list is clicked
+
+export const completeOrder = async (orderId) => {
+  await fetch(`http://localhost:5087/orders/${orderId}/fulfill`, {
+    method: "POST",
+  });
+  document.dispatchEvent(new CustomEvent("stateChanged"));
+};
+
+//NEW API getters
 
 export const getOrders = async () => {
   const res = await fetch("http://localhost:5087/orders");
@@ -98,8 +105,8 @@ export const getInteriors = async () => {
 
 export const getTechnologies = async () => {
   const res = await fetch("http://localhost:5087/technologies");
-  const data = await res.json();
-  return data;
+  const data = await res.json(); // waits for the promise returned by fetch; res is the server response object
+  return data; // reads the server response object as JSON data. Returns another promise, resolves to parsed JSON data, stored in "data". "Await waits for this promise to resolve."
 };
 
 export const getPaints = async () => {
@@ -107,3 +114,36 @@ export const getPaints = async () => {
   const data = await res.json();
   return data;
 };
+
+// original local database getters
+
+// export const getOrders = () => {
+//     return [...database.customOrders]
+// }
+
+// export const getWheels = () => {
+//     return [...database.wheels]
+// }
+
+// export const getInteriors = () => {
+//     return [...database.interiors]
+// }
+
+// export const getTechnologies = () => {
+//     return [...database.technologies]
+// }
+
+// export const getPaints = () => {
+//     return [...database.paints]
+// }
+
+// original database create order setter
+
+// export const addCustomOrder = () => {
+//     const newOrder = {...database.orderBuilder}
+//     newOrder.timestamp = new Date().toLocaleDateString("en-US")
+//     newOrder.id = database.customOrders[database.customOrders.length - 1].id + 1
+//     database.customOrders.push(newOrder)
+
+//     database.orderBuilder = {}
+//     document.dispatchEvent(new CustomEvent("stateChanged"))
