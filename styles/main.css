@@ -44,8 +44,19 @@ ul {
 }
 
 .order {
+  display: flex;
+  align-items: center;
   border: 1px dashed darkcyan;
   background-color: aliceblue;
   padding: 1rem;
   margin: 1rem 0;
+}
+
+.order--description {
+  margin: 0px 2rem 0px 0px;
+}
+
+.order--button {
+  padding: 0.5rem;
+  font-size: 1rem;
 }
